@@ -38,8 +38,8 @@ public class Country{
         this.id = id;
     }
 
-    public CountryName getCountryName() {
-        return countryName;
+    public String getCountryName() {
+        return countryName.toString();
     }
 
     public void setCountryName(CountryName countryName) {
