@@ -8,7 +8,7 @@ public class Country{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private CountryName countryName;
+    private CountryName countryname;
     private String code;
 
     @ManyToOne
@@ -21,9 +21,9 @@ public class Country{
     public Country() {
     }
 
-    public Country(int id, CountryName countryName, String code, ServiceProvider serviceProvider, User user) {
+    public Country(int id, CountryName countryname, String code, ServiceProvider serviceProvider, User user) {
         this.id = id;
-        this.countryName = countryName;
+        this.countryname = countryname;
         this.code = code;
         this.serviceProvider = serviceProvider;
         this.user = user;
@@ -37,12 +37,12 @@ public class Country{
         this.id = id;
     }
 
-    public CountryName getCountryName() {
-        return countryName;
+    public CountryName getCountryname() {
+        return countryname;
     }
 
-    public void setCountryName(CountryName countryName) {
-        this.countryName = countryName;
+    public void setCountryname(CountryName countryname) {
+        this.countryname = countryname;
     }
 
     public String getCode() {

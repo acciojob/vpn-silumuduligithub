@@ -52,23 +52,23 @@ public class AdminServiceImpl implements AdminService {
         if(countryName.equals("ind") || countryName.equals("aus") || countryName.equals("usa") || countryName.equals("chi") || countryName.equals("jpn")){
             Country country = new Country();
             if(countryName.equals("ind")){
-                country.setCountryName(CountryName.IND);
+                country.setCountryname(CountryName.IND);
                 country.setServiceProvider(serviceProvider);
                 serviceProvider.getCountryList().add(country);
             }else if(countryName.equals("aus")){
-                country.setCountryName(CountryName.AUS);
+                country.setCountryname(CountryName.AUS);
                 country.setServiceProvider(serviceProvider);
                 serviceProvider.getCountryList().add(country);
             }else if(countryName.equals("usa")){
-                country.setCountryName(CountryName.USA);
+                country.setCountryname(CountryName.USA);
                 country.setServiceProvider(serviceProvider);
                 serviceProvider.getCountryList().add(country);
             }else if(countryName.equals("chi")){
-                country.setCountryName(CountryName.CHI);
+                country.setCountryname(CountryName.CHI);
                 country.setServiceProvider(serviceProvider);
                 serviceProvider.getCountryList().add(country);
             }else{
-                country.setCountryName(CountryName.JPN);
+                country.setCountryname(CountryName.JPN);
                 country.setServiceProvider(serviceProvider);
                 serviceProvider.getCountryList().add(country);
             }
