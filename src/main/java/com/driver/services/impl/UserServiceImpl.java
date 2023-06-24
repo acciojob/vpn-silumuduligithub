@@ -23,25 +23,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User register(String username, String password, String countryName) throws Exception{
-        if(countryName.equals("ind") || countryName.equals("aus") || countryName.equals("usa") || countryName.equals("chi") || countryName.equals("jpn")) {
+        if(countryName.equalsIgnoreCase("ind") || countryName.equalsIgnoreCase("aus") || countryName.equalsIgnoreCase("usa") || countryName.equalsIgnoreCase("chi") || countryName.equalsIgnoreCase("jpn")) {
             User user = new User();
             user.setUsername(username);
             user.setPassword(password);
-            countryName = countryName.toUpperCase();
             Country country = new Country();
-            if (countryName.equals("IND")) {
+            if (countryName.equalsIgnoreCase("ind")) {
                 country.setCountryName(CountryName.IND);
                 country.setCode(CountryName.IND.toCode());
-            } else if (countryName.equals("USA")) {
+            }if (countryName.equalsIgnoreCase("usa")) {
                 country.setCountryName(CountryName.USA);
                 country.setCode(CountryName.USA.toCode());
-            } else if (countryName.equals("AUS")) {
+            }if (countryName.equalsIgnoreCase("aus")) {
                 country.setCountryName(CountryName.AUS);
                 country.setCode(CountryName.AUS.toCode());
-            } else if (countryName.equals("CHI")) {
+            } if (countryName.equalsIgnoreCase("chi")) {
                 country.setCountryName(CountryName.CHI);
                 country.setCode(CountryName.CHI.toCode());
-            } else if (countryName.equals("JPN")) {
+            }if (countryName.equalsIgnoreCase("jpn")) {
                 country.setCountryName(CountryName.JPN);
                 country.setCode(CountryName.JPN.toCode());
             }

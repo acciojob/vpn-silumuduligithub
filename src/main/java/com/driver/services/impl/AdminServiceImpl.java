@@ -47,7 +47,7 @@ public class AdminServiceImpl implements AdminService {
         if(countryName.length() != 3){
             throw new Exception("Country not found");
         }
-        if(countryName.equals("ind") || countryName.equals("aus") || countryName.equals("usa") || countryName.equals("chi") || countryName.equals("jpn")){
+        if(countryName.equalsIgnoreCase("ind") || countryName.equalsIgnoreCase("aus") || countryName.equalsIgnoreCase("usa") || countryName.equalsIgnoreCase("chi") || countryName.equalsIgnoreCase("jpn")){
             ServiceProvider serviceProvider = serviceProviderRepository1.findById(serviceProviderId).get();
             Country country = new Country();
             countryName = countryName.toUpperCase();
@@ -55,16 +55,16 @@ public class AdminServiceImpl implements AdminService {
                 System.out.println("country name is"+countryName);
                 country.setCountryName(CountryName.IND);
                 country.setCode(CountryName.IND.toCode());
-            } else if (countryName.equalsIgnoreCase("usa")) {
+            } if (countryName.equalsIgnoreCase("usa")) {
                 country.setCountryName(CountryName.USA);
                 country.setCode(CountryName.USA.toCode());
-            } else if (countryName.equalsIgnoreCase("aus")) {
+            } if (countryName.equalsIgnoreCase("aus")) {
                 country.setCountryName(CountryName.AUS);
                 country.setCode(CountryName.AUS.toCode());
-            } else if (countryName.equalsIgnoreCase("chi")) {
+            } if (countryName.equalsIgnoreCase("chi")) {
                 country.setCountryName(CountryName.CHI);
                 country.setCode(CountryName.CHI.toCode());
-            } else{
+            }if (countryName.equalsIgnoreCase("jpn")) {
                 country.setCountryName(CountryName.JPN);
                 country.setCode(CountryName.JPN.toCode());
             }
