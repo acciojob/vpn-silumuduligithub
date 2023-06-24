@@ -1,6 +1,8 @@
 package com.driver.services.impl;
 
+import com.driver.model.Country;
 import com.driver.model.CountryName;
+import com.driver.model.ServiceProvider;
 import com.driver.model.User;
 import com.driver.repository.CountryRepository;
 import com.driver.repository.ServiceProviderRepository;
@@ -21,30 +23,46 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User register(String username, String password, String countryName) throws Exception{
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        if(countryName.equals("IND")){
-            user.setOriginalIp(CountryName.IND.toCode()+"."+user.getId());
-        }else if(countryName.equals("USA")){
-            user.setOriginalIp(CountryName.USA.toCode()+"."+user.getId());
-        }else if(countryName.equals("AUS")){
-            user.setOriginalIp(CountryName.AUS.toCode()+"."+user.getId());
-        }else if(countryName.equals("CHI")){
-            user.setOriginalIp(CountryName.CHI.toCode()+"."+user.getId());
-        }else if(countryName.equals("JPN")){
-            user.setOriginalIp(CountryName.JPN.toCode()+"."+user.getId());
+        if(countryName.equals("ind") || countryName.equals("aus") || countryName.equals("usa") || countryName.equals("chi") || countryName.equals("jpn")) {
+            User user = new User();
+            user.setUsername(username);
+            user.setPassword(password);
+            countryName = countryName.toUpperCase();
+            Country country = new Country();
+            if (countryName.equals("IND")) {
+                country.setCountryName(CountryName.IND);
+                country.setCode(CountryName.IND.toCode());
+            } else if (countryName.equals("USA")) {
+                country.setCountryName(CountryName.USA);
+                country.setCode(CountryName.USA.toCode());
+            } else if (countryName.equals("AUS")) {
+                country.setCountryName(CountryName.AUS);
+                country.setCode(CountryName.AUS.toCode());
+            } else if (countryName.equals("CHI")) {
+                country.setCountryName(CountryName.CHI);
+                country.setCode(CountryName.CHI.toCode());
+            } else if (countryName.equals("JPN")) {
+                country.setCountryName(CountryName.JPN);
+                country.setCode(CountryName.JPN.toCode());
+            }
+            user.setConnected(false);
+            user.setMaskedIp(null);
+            user.setOriginalCountry(country);
+            user.setOriginalIp(country.getCode()+"."+user.getId());
+            country.setUser(user);
+            userRepository3.save(user);
+            return user;
+        }else{
+            throw new Exception("Country not found");
         }
-        user.setConnected(false);
-        user.setMaskedIp(null);
-        userRepository3.save(user);
-        return user;
     }
 
     @Override
     public User subscribe(Integer userId, Integer serviceProviderId) {
         User user = userRepository3.findById(userId).get();
-        user.getServiceProviderList().add(serviceProviderRepository3.findById(serviceProviderId).get());
+        ServiceProvider serviceProvider = serviceProviderRepository3.findById(serviceProviderId).get();
+        user.getServiceProviderList().add(serviceProvider);
+        serviceProvider.getUsers().add(user);
         userRepository3.save(user);
         return user;
     }
