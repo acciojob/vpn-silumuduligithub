@@ -1,5 +1,6 @@
 package com.driver.services.impl;
 
+import com.driver.model.CountryName;
 import com.driver.model.User;
 import com.driver.repository.CountryRepository;
 import com.driver.repository.ServiceProviderRepository;
@@ -20,11 +21,31 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User register(String username, String password, String countryName) throws Exception{
-        return null;
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        if(countryName.equals("IND")){
+            user.setOriginalIp(CountryName.IND.toCode()+"."+user.getId());
+        }else if(countryName.equals("USA")){
+            user.setOriginalIp(CountryName.USA.toCode()+"."+user.getId());
+        }else if(countryName.equals("AUS")){
+            user.setOriginalIp(CountryName.AUS.toCode()+"."+user.getId());
+        }else if(countryName.equals("CHI")){
+            user.setOriginalIp(CountryName.CHI.toCode()+"."+user.getId());
+        }else if(countryName.equals("JPN")){
+            user.setOriginalIp(CountryName.JPN.toCode()+"."+user.getId());
+        }
+        user.setConnected(false);
+        user.setMaskedIp(null);
+        userRepository3.save(user);
+        return user;
     }
 
     @Override
     public User subscribe(Integer userId, Integer serviceProviderId) {
-        return null;
+        User user = userRepository3.findById(userId).get();
+        user.getServiceProviderList().add(serviceProviderRepository3.findById(serviceProviderId).get());
+        userRepository3.save(user);
+        return user;
     }
 }
