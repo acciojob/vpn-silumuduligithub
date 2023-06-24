@@ -12,6 +12,7 @@ public class User {
     private String username;
     private String password;
     private String originalCountry;
+    private String originalIp;
     private String maskedIp;
     private Boolean connected;
     @ManyToMany
@@ -28,11 +29,12 @@ public class User {
     public User() {
     }
 
-    public User(int id, String username, String password, String originalCountry, String maskedIp, Boolean connected, List<ServiceProvider> serviceProviderList, Country country, List<Connection> connectionList) {
+    public User(int id, String username, String password, String originalCountry, String originalIp, String maskedIp, Boolean connected, List<ServiceProvider> serviceProviderList, Country country, List<Connection> connectionList) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.originalCountry = originalCountry;
+        this.originalIp = originalIp;
         this.maskedIp = maskedIp;
         this.connected = connected;
         this.serviceProviderList = serviceProviderList;
@@ -70,6 +72,14 @@ public class User {
 
     public void setOriginalCountry(String originalCountry) {
         this.originalCountry = originalCountry;
+    }
+
+    public String getOriginalIp() {
+        return originalIp;
+    }
+
+    public void setOriginalIp(String originalIp) {
+        this.originalIp = originalIp;
     }
 
     public String getMaskedIp() {
