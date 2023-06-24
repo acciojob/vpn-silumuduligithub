@@ -11,8 +11,6 @@ import com.driver.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Locale;
-
 @Service
 public class AdminServiceImpl implements AdminService {
     @Autowired
@@ -27,7 +25,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Admin register(String username, String password) {
         Admin admin = new Admin();
-        admin.setUserName(username);
+        admin.setUsername(username);
         admin.setPassword(password);
         adminRepository1.save(admin);
         return admin;
@@ -38,7 +36,7 @@ public class AdminServiceImpl implements AdminService {
         ServiceProvider serviceProvider = new ServiceProvider();
         serviceProvider.setName(providerName);
         Admin admin = adminRepository1.findById(adminId).get();
-        admin.getServiceProviderList().add(serviceProvider);
+        admin.getServiceProviders().add(serviceProvider);
         serviceProvider.setAdmin(admin);
         serviceProviderRepository1.save(serviceProvider);
         return admin;
