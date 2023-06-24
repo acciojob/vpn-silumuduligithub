@@ -14,8 +14,7 @@ public class User {
     private String originalIp;
     private String maskedIp;
     private Boolean connected;
-    @ManyToMany
-    @JoinColumn
+    @ManyToMany(mappedBy = "users")
     private List<ServiceProvider> serviceProviderList = new ArrayList<>();
 
     @OneToOne
