@@ -27,13 +27,8 @@ public class ServiceProvider {
     public ServiceProvider() {
     }
 
-    public ServiceProvider(int id, String name, Admin admin, List<Connection> connectionList, List<Country> countryList, List<User> users) {
-        this.id = id;
+    public ServiceProvider(String name) {
         this.name = name;
-        this.admin = admin;
-        this.connectionList = connectionList;
-        this.countryList = countryList;
-        this.users = users;
     }
 
     public int getId() {
